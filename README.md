@@ -1,2 +1,3 @@
-# Utils4Slurm
+# Utils4HPC
+
 Some Scripts for Slurm HPC.
