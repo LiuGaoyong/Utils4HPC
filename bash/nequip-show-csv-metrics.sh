@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 if [ -z $1 ]; then DIR='.'; else DIR=$1; fi
-for csv in $(find $DIR -name metrics.csv); do
+if [ -z $2 ]; then NLINE=8; else NLINE=$2; fi
+for csv in $(find $DIR -name metrics.csv | sort); do
     echo ====================================
     echo $csv;
     echo ------------------------------------
     TMPFILE=./.dgfahsdklfjhasdklfjhaskdlfgfsd
-    head -n 1 $csv >| $TMPFILE; tail -n 8 $csv >> $TMPFILE
-python -c '
+    head -n 1 $csv >| $TMPFILE; tail -n $NLINE $csv >> $TMPFILE
+    python -c '
 import sys
 colnames = [
     "epoch",
@@ -28,6 +29,6 @@ with open(sys.argv[1]) as f:
         for i,fmt in zip(line_index_lst, format_lst):
             print(fmt.format(lst[i]), end="\t")
         print()
-' $TMPFILE
+    ' $TMPFILE
 done; rm -f $TMPFILE;
 echo ====================================
