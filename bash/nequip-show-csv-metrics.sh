@@ -14,7 +14,7 @@ colnames = [
     "epoch",
     "step",
     "train_metric_step/forces_mae",
-    "train_metric_step/forces_maxabserr",
+    #"train_metric_step/forces_maxabserr",
     "train_metric_step/per_atom_energy_mae",
     "train_metric_step/per_atom_energy_maxabserr",
 ]
